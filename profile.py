@@ -67,27 +67,6 @@ portal.context.defineParameter(
     "Type of compute node to be paired with the X310 Radios",
 )
 
-# List of CBRS rooftop X310 radios.
-rooftop_names = [
-    ("cbrssdr1-bes",
-     "Behavioral"),
-    ("cbrssdr1-browning",
-     "Browning"),
-    ("cbrssdr1-dentistry",
-     "Dentistry"),
-    ("cbrssdr1-fm",
-     "Friendship Manor"),
-    ("cbrssdr1-honors",
-     "Honors"),
-    ("cbrssdr1-meb",
-     "MEB"),
-    ("cbrssdr1-smt",
-     "SMT"),
-    ("cbrssdr1-ustar",
-     "USTAR"),
-    ("cbrssdr1-hospital",
-     "Hospital") 
-]
 
 # List of Cellular radios
 cell_radios = [
@@ -159,20 +138,7 @@ portal.context.defineStructParameter(
         ),
     ])
     
-# Multi-value list of x310+PC pairs to add to experiment.
-portal.context.defineStructParameter(
-    "radios", "X310 CBRS Radios", [],
-    multiValue=True,
-    min=1,
-    multiValueTitle="CBRS Radios.",
-    members=[
-        portal.Parameter(
-            "radio_name",
-            "Rooftop base-station X310",
-            portal.ParameterType.STRING,
-            rooftop_names[0],
-            rooftop_names)
-    ])
+
     
 # Set of Cellular X310 radios to allocate
 portal.context.defineStructParameter(
