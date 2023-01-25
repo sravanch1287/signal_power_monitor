@@ -86,6 +86,12 @@ rooftop_names = [
     ("cbrssdr1-ustar",
      "USTAR"),
     ("cbrssdr1-hospital",
+     "Hospital"),
+    ("cellsdr1-smt",
+     "SMT"),
+    ("cellsdr1-bes",
+     "BES"),
+    ("cellsdr1-hospital",
      "Hospital")
 ]
 
@@ -143,8 +149,8 @@ portal.context.defineStructParameter(
 params = portal.context.bindParameters()
 
 for i, frange in enumerate(params.freq_ranges):
-    if frange.freq_min < 3400 or frange.freq_min > 3800 \
-       or frange.freq_max < 3400 or frange.freq_max > 3800:
+    if frange.freq_min < 1400 or frange.freq_min > 3800 \
+       or frange.freq_max < 1400 or frange.freq_max > 3800:
         perr = portal.ParameterError("Frequencies must be between 3400 and 3800 MHz", ["freq_ranges[%d].freq_min" % i, "freq_ranges[%d].freq_max" % i])
         portal.context.reportError(perr)
     if frange.freq_max - frange.freq_min < 1:
