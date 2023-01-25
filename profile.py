@@ -86,14 +86,55 @@ rooftop_names = [
     ("cbrssdr1-ustar",
      "USTAR"),
     ("cbrssdr1-hospital",
-     "Hospital"),
-    ("cellsdr1-smt",
-     "SMTCELL"),
-    ("cellsdr1-bes",
-     "BESCELL"),
-    ("cellsdr1-hospital",
-     "HospitalCELL")
+     "Hospital") 
 ]
+
+# List of Cellular radios
+cell_radios = [
+    ("cellsdr1-bes",
+     "Behavioral"),
+    ("cellsdr1-browning",
+     "Browning"),
+    ("cellsdr1-dentistry",
+     "Dentistry"),
+    ("cellsdr1-fm",
+     "Friendship Manor"),
+    ("cellsdr1-hospital",
+     "Hospital"),
+    ("cellsdr1-honors",
+     "Honors"),
+    ("cellsdr1-meb",
+     "MEB"),
+    ("cellsdr1-smt",
+     "SMT"),
+    ("cellsdr1-ustar",
+     "USTAR"),
+]
+
+# A list of endpoint sites.
+fe_sites = [
+    ('urn:publicid:IDN+bookstore.powderwireless.net+authority+cm',
+     "Bookstore"),
+    ('urn:publicid:IDN+cpg.powderwireless.net+authority+cm',
+     "Garage"),
+    ('urn:publicid:IDN+ebc.powderwireless.net+authority+cm',
+     "EBC"),
+    ('urn:publicid:IDN+guesthouse.powderwireless.net+authority+cm',
+     "GuestHouse"),
+    ('urn:publicid:IDN+humanities.powderwireless.net+authority+cm',
+     "Humanities"),
+    ('urn:publicid:IDN+law73.powderwireless.net+authority+cm',
+     "Law73"),
+    ('urn:publicid:IDN+madsen.powderwireless.net+authority+cm',
+     "Madsen"),
+    ('urn:publicid:IDN+moran.powderwireless.net+authority+cm',
+     "Moran"),
+    ('urn:publicid:IDN+sagepoint.powderwireless.net+authority+cm',
+     "SagePoint"),
+    ('urn:publicid:IDN+web.powderwireless.net+authority+cm',
+     "WEB"),
+]
+
 
 # Frequency/spectrum parameters
 portal.context.defineStructParameter(
@@ -132,6 +173,40 @@ portal.context.defineStructParameter(
             rooftop_names[0],
             rooftop_names)
     ])
+    
+# Set of Cellular X310 radios to allocate
+portal.context.defineStructParameter(
+    "cell_radio_sites", "Cellular Radio Sites", [],
+    multiValue=True,
+    min=0,
+    multiValueTitle="Cellular X310 radios to allocate.",
+    members=[
+        portal.Parameter(
+            "radio",
+            "Cellular Radio Site",
+            portal.ParameterType.STRING,
+            cell_radios[0], cell_radios,
+            longDescription="Cellular X310 radio will be allocated from selected site."
+        ),
+    ])
+
+# Set of Fixed Endpoint devices to allocate (nuc2)
+portal.context.defineStructParameter(
+    "fe_radio_sites_nuc2", "Fixed Endpoint Sites", [],
+    multiValue=True,
+    min=0,
+    multiValueTitle="Cellular Fixed Endpoint NUC2+B210 radios.",
+    members=[
+        portal.Parameter(
+            "site",
+            "FE Site",
+            portal.ParameterType.STRING,
+            fe_sites[0], fe_sites,
+            longDescription="A `nuc2` device will be selected at the site."
+        ),
+    ])
+
+    
 
 #portal.context.defineStructParameter(
 #    "radios", "X310 CBRS Radios",
