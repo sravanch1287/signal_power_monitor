@@ -205,8 +205,8 @@ for frange in params.freq_ranges:
     request.requestSpectrum(frange.freq_min, frange.freq_max, 100)
 
 # Request PC + X310 resource pairs.
-for i, radios in enumerate(params.radios):
-	x310_node_pair(i, radios.radio_name, params.nodetype)#, installs)
+#for i, radios in enumerate(params.radios):
+#	x310_node_pair(i, radios.radio_name, params.nodetype)#, installs)
 
 # Emit!
 portal.context.printRequestRSpec()
