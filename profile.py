@@ -88,11 +88,11 @@ rooftop_names = [
     ("cbrssdr1-hospital",
      "Hospital"),
     ("cellsdr1-smt",
-     "SMT"),
+     "SMTCELL"),
     ("cellsdr1-bes",
-     "BES"),
+     "BESCELL"),
     ("cellsdr1-hospital",
-     "Hospital")
+     "HospitalCELL")
 ]
 
 # Frequency/spectrum parameters
