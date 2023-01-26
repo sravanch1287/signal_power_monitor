@@ -32,6 +32,12 @@ x310_node_disk_image = \
 setup_command = "/local/repository/startup.sh"
 #installs = ["gnuradio"]
 
+orch_image = x310_node_disk_image
+#x310_node_image = meas_disk_image
+nuc_image = x310_node_disk_image
+sm_image = x310_node_disk_image
+
+
 # Top-level request object.
 request = portal.context.makeRequestRSpec()
 
