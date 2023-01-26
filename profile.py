@@ -156,6 +156,25 @@ portal.context.defineStructParameter(
         ),
     ])
 
+
+# Set of Fixed Endpoint devices to allocate (nuc1)
+portal.context.defineStructParameter(
+    "fe_radio_sites_nuc1", "Fixed Endpoint Sites", [],
+    multiValue=True,
+    min=0,
+    multiValueTitle="Fixed Endpoint NUC1+B210 radios.",
+    members=[
+        portal.Parameter(
+            "site",
+            "FE Site",
+            portal.ParameterType.STRING,
+            fe_sites[0], fe_sites,
+            longDescription="A `nuc1` device will be selected at the site."
+        ),
+    ])
+
+
+
 # Set of Fixed Endpoint devices to allocate (nuc2)
 portal.context.defineStructParameter(
     "fe_radio_sites_nuc2", "Fixed Endpoint Sites", [],
@@ -203,6 +222,39 @@ portal.context.verifyParameters()
 # Request frequency range(s)
 for frange in params.freq_ranges:
     request.requestSpectrum(frange.freq_min, frange.freq_max, 100)
+
+# Request nuc1+B210 radio resources at FE sites.
+for fesite in params.fe_radio_sites_nuc1:
+    nuc = ""
+    for urn,sname in fe_sites:
+        if urn == fesite.site:
+            nuc = request.RawPC("%s-nuc1-b210" % sname)
+            break
+    nuc.component_manager_id = fesite.site
+    nuc.component_id = "nuc1"
+    nuc.disk_image = nuc_image
+    if params.start_vnc:
+        nuc.startVNC()
+        
+# Request PC + Cellular X310 resource pairs.
+for rsite in params.cell_radio_sites:
+    x310_node_pair(rsite.radio, params.nodetype, params.start_vnc, params.ignore_isbw)
+        
+
+# Request nuc2+B210 radio resources at FE sites.
+for fesite in params.fe_radio_sites_nuc2:
+    nuc = ""
+    for urn,sname in fe_sites:
+        if urn == fesite.site:
+            nuc = request.RawPC("%s-nuc2-b210" % sname)
+            break
+    nuc.component_manager_id = fesite.site
+    nuc.component_id = "nuc2"
+    nuc.disk_image = nuc_image
+    if params.start_vnc:
+        nuc.startVNC()
+
+
 
 # Request PC + X310 resource pairs.
 #for i, radios in enumerate(params.radios):
