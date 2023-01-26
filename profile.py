@@ -261,12 +261,12 @@ freq_ranges = {
     "CBAND": [3550.00, 3700.00], 
     "ISM-5800": [5725.00, 5850.00]
 }
-
+'''
 datasets = {
     "SpectSet": "urn:publicid:IDN+emulab.net:nrdz+ltdataset+SpectSet",
     "ADSBRecordings": "urn:publicid:IDN+emulab.net:powdersandbox+stdataset+ADSBrecordings"
 }
-
+'''
 # Top-level request object.
 request = portal.context.makeRequestRSpec()
 
@@ -361,7 +361,7 @@ portal.context.defineParameter(
     ["None", "d430","d740", "d710", ""],
     "Type of compute node for the orchestrator (unset == 'any available')",
 )
-
+'''
 portal.context.defineParameter(
     "dataset",
     "Dataset to connect",
@@ -369,7 +369,7 @@ portal.context.defineParameter(
     ["SpectSet","ADSBRecordings","None"],
     "Name of the remote dataset to connect with orch",
 )
-
+'''
 # Set of Mobile Endpoint devices to allocate
 portal.context.defineStructParameter(
     "me_radio_sites", "Mobile Endpoint Sites", [],
@@ -642,8 +642,8 @@ if params.orchtype != "None":
     orch.hardware_type = params.orchtype
     if params.start_vnc:
         orch.startVNC()
-    if params.dataset != "None": 
-        connect_to_dataset(orch, params.dataset)
+    #if params.dataset != "None": 
+    #    connect_to_dataset(orch, params.dataset)
 
 # Request PhantomNet radios
 for dev in params.phantomnet:
